@@ -1,8 +1,11 @@
 import React from 'react'
+import FormPage from './FormPage'
 
 const App = () => {
   return (
-    <div>App</div>
+    <>
+      <FormPage />
+    </>
   )
 }
 
