@@ -1,21 +1,59 @@
 @import "tailwindcss";
-@font-face {
-    font-family: middlefont1;
-    src: url(../assets/font/page1middle1);
+
+@theme {
+  --font-cinzel: "Cinzel", serif;
+  --font-normalfont: "normalfont", sans-serif;
+  --font-heading: "heading", sans-serif;
+  --font-philo: "philo", sans-serif;
 }
-@font-face {
-    font-family: middlefont2;
-    src: url(../assets/font/page1middle2);
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: clip;
 }
+
 @font-face {
-    font-family: middlefont3;
-    src: url(../assets/font/page1middle3);
+  font-family: Cinzel;
+  src: url(./assets/font/Cinzel-Regular.woff2);
 }
+
 @font-face {
-    font-family: normalfont;
-    src: url(../assets/font/navfont);
+  font-family: normalfont;
+  src: url(./assets/font/navfont.ttf);
 }
+
 @font-face {
-    font-family: heading;
-    src: url(../assets/font/heading);
+  font-family: heading;
+  src: url(./assets/font/heading.ttf);
 }
+
+@font-face {
+  font-family: philo;
+  src: url(./assets/font/Philosopher.ttf);
+}
+
+/* ... scrollbar styling ... */
+::-webkit-scrollbar {
+  width: 10px;
+  
+}
+
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 10px;
+  
+  
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: black;
+}
+
+
