@@ -6,6 +6,8 @@ gsap.registerPlugin(ScrollTrigger);
 import Page1 from './Pages/Page1'
 import Page2 from './Pages/Page2'
 import Page3 from './Pages/Page3'
+import Opinion from './components/Opinions';
+import FormPage from './components/FormPage';
 import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
 
@@ -76,6 +78,8 @@ const App = () => {
       <Page3/>
       </section>
       <Page2/>
+      <Opinion/>
+      <FormPage/>
       
       
     </div>
