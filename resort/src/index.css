@@ -1,1 +1,29 @@
 @import "tailwindcss";
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+@font-face {
+    font-family: middlefont1;
+    src: url(../assets/font/page1middle1);
+}
+@font-face {
+    font-family: middlefont2;
+    src: url(../assets/font/page1middle2);
+}
+@font-face {
+    font-family: middlefont3;
+    src: url(../assets/font/page1middle3);
+}
+@font-face {
+    font-family: normalfont;
+    src: url(../assets/font/navfont);
+}
+@font-face {
+    font-family: heading;
+    src: url(../assets/font/heading);
+}

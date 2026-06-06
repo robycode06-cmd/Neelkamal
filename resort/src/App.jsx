@@ -1,12 +1,13 @@
 import React from 'react'
-import FormPage from './FormPage'
+import Page1 from './Pages/Page1'
+
+
 
 const App = () => {
   return (
-    <>
-      <FormPage />
-    </>
+   <>
+   </>
   )
 }
 
-export default App
+export default App;
