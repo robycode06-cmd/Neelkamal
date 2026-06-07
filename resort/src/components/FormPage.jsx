@@ -203,6 +203,7 @@ function FormPage() {
   }, []);
 
   return (
+    <section id='page5'>
     <div ref={sectionRef} className="form-container min-h-screen bg-cover bg-[#FCF7EF] flex flex-col items-center relative bg-center p-3 sm:p-4 md:p-8 overflow-hidden">
       {/* ── Background Image (parallax target) ── */}
       <img
@@ -300,21 +301,21 @@ function FormPage() {
 
       {/* ── Contact Info Bar ── */}
       <div className="fm-contact-bar z-10 flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 md:gap-6 justify-center items-center bg-white/5 backdrop-blur-md border border-white/10 w-[92%] max-w-4xl mb-6 sm:mb-8 p-3 sm:p-4 md:p-6 rounded-2xl shadow-lg mt-5 text-center">
-        <p className="fm-contact text-xs sm:text-sm md:text-base lg:text-[18px] text-[#FFFFF0] font-serif">
+        <p className="fm-contact text-xs sm:text-sm md:text-base lg:text-[18px] md:text-[#FFFFF0] font-serif">
           <span className="text-[#7A2B1D] mr-1.5 sm:mr-2 tracking-widest uppercase text-xs sm:text-sm">
             Email:
           </span>
           rajudasa@gmail.com
         </p>
-        <div className="hidden sm:block w-px h-5 sm:h-6 bg-white/20" />
-        <p className="fm-contact text-xs sm:text-sm md:text-base lg:text-[18px] text-[#FFFFF0] font-serif">
+        <div className="hidden text-black sm:block w-px h-5 sm:h-6 bg-white/20" />
+        <p className="fm-contact text-xs sm:text-sm md:text-base lg:text-[18px] md:text-[#FFFFF0] font-serif">
           <span className="text-[#7A2B1D] mr-1.5 sm:mr-2 tracking-widest uppercase text-xs sm:text-sm">
             Phone:
           </span>
           +91 823434544
         </p>
         <div className="hidden sm:block w-px h-5 sm:h-6 bg-white/20" />
-        <p className="fm-contact text-xs sm:text-sm md:text-base lg:text-[18px] text-[#FFFFF0] font-serif">
+        <p className="fm-contact text-xs sm:text-sm md:text-base lg:text-[18px] md:text-[#FFFFF0] font-serif">
           <span className="text-[#7A2B1D] mr-1.5 sm:mr-2 tracking-widest uppercase text-xs sm:text-sm">
             Booking:
           </span>
@@ -343,6 +344,7 @@ function FormPage() {
         </div>
       )}
     </div>
+    </section>
   );
 }
 

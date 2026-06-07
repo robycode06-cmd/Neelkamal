@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import ImageScroller from '../components/ImageScroller';
 import ClickSpark from '../components/ClickSpark'
 import CircularText from '../components/CircularText';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
 // Import all local image assets
 import image1 from '../assets/1.webp';
 import image2 from '../assets/2.webp';
@@ -23,6 +27,7 @@ import image17 from '../assets/17.webp';
 import image18 from '../assets/18.webp';
 import page3bg from '../assets/3pagebg.webp';
 
+gsap.registerPlugin(ScrollTrigger);
 
 // Categorize images for the scrollers
 const poolImages = [
@@ -53,8 +58,63 @@ const roomImages = [
 ];
 
 const Page3 = () => {
+  const sectionRef = useRef(null);
+
+  useGSAP(() => {
+  const mm = gsap.matchMedia();
+
+  // Desktop only
+  mm.add("(min-width: 768px)", () => {
+    const revealItems = gsap.utils.toArray('.pg3-reveal');
+
+    revealItems.forEach((item, i) => {
+      const curveX = i % 2 === 0 ? -35 : 25;
+
+      gsap.fromTo(
+        item,
+        {
+          y: 70,
+          x: curveX,
+          rotation: i % 2 === 0 ? -3 : 2,
+          opacity: 0,
+          scale: 0.92,
+        },
+        {
+          y: 0,
+          x: 0,
+          rotation: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1.1,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: item,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+          delay: i * 0.12,
+        }
+      );
+    });
+  });
+
+  // Mobile only
+  mm.add("(max-width: 767px)", () => {
+    gsap.set(".pg3-reveal", {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      scale: 1,
+      rotation: 0,
+    });
+  });
+
+  return () => mm.revert();
+}, { scope: sectionRef });
+
   return (
-    <div className="min-h-screen w-full bg-[#FADFAD] md:bg-[rgb(255,246,226)] py-16 px-4 md:px-12 flex flex-col items-center select-none overflow-hidden " >
+    <section id='page3'>
+    <div ref={sectionRef} className="min-h-screen w-full bg-[rgb(255,246,226)] py-16 px-4 md:px-12 flex flex-col items-center select-none overflow-hidden " >
         <ClickSpark
         sparkColor="black"
         sparkSize={15}
@@ -63,7 +123,7 @@ const Page3 = () => {
         duration={400}
       >
       {/* Centered Gallery Header */}
-      <h1 className="font-heading text-5xl md:text-7xl text-[#7A2B1D] tracking-widest mb-16 uppercase text-center">
+      <h1 className="pg3-heading font-heading text-5xl md:text-7xl text-[#7A2B1D] tracking-widest mb-16 uppercase text-center">
         GALLERY
       </h1>
       
@@ -72,7 +132,7 @@ const Page3 = () => {
         
         {/* Column 1: Swimming Pool & In & Around (Stacked) */}
         <div className="flex flex-col gap-12 items-center">
-          <div className="flex flex-col items-center">
+          <div className="pg3-reveal flex flex-col items-center">
             <ImageScroller 
               images={poolImages} 
               containerClassName="w-[340px] h-[220px] md:w-[380px] md:h-[240px]" 
@@ -81,7 +141,7 @@ const Page3 = () => {
               Swimming Pool
             </span>
           </div>
-          <div className="flex flex-col items-center">
+          <div className="pg3-reveal flex flex-col items-center">
             <ImageScroller 
               images={aroundImages} 
               containerClassName="w-[340px] h-[220px] md:w-[380px] md:h-[240px]" 
@@ -93,7 +153,7 @@ const Page3 = () => {
         </div>
 
         {/* Column 2: Portraits (Centered Vertically) */}
-        <div className="flex flex-col items-center justify-center">
+        <div className="pg3-reveal flex flex-col items-center justify-center">
           <ImageScroller 
             images={portraitImages} 
             containerClassName="w-[340px] h-[600px] md:w-[380px] md:h-[600px]" 
@@ -105,7 +165,7 @@ const Page3 = () => {
 
         {/* Column 3: Rooms & Rotating Circular Text Logo (Stacked) */}
         <div className="flex flex-col gap-12 items-center justify-between h-full">
-          <div className="flex flex-col items-center">
+          <div className="pg3-reveal flex flex-col items-center">
             <ImageScroller 
               images={roomImages} 
               containerClassName="w-[340px] h-[220px] md:w-[380px] md:h-[240px]" 
@@ -116,7 +176,7 @@ const Page3 = () => {
           </div>
           
           {/* Rotating Typography Logo */}
-          <div className='hidden md:block absolute bottom-20'>
+          <div className='hidden md:block absolute bottom-20 pg3-circular-text'>
             <CircularText
                 text="RESORT*UD*NEELKAMAL*"
                 onHover="speedUp"
@@ -129,6 +189,7 @@ const Page3 = () => {
       </div>
       </ClickSpark>
     </div>
+    </section>
   );
 };
 

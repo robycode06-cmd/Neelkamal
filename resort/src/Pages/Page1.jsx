@@ -23,28 +23,29 @@ const Page1 = () => {
   })
   return (
     
-
-<ClickSpark
-  sparkColor="white"
-  sparkSize={15}
-  sparkRadius={20}
-  sparkCount={8}
-  duration={400}
->
-  {/* Your content here */}
-  <div >
-    <Navbar/>
-    <div className=' relative w-full md:h-screen uppercase overflow-hidden' >
-      
-      
-      <Page1slider/>
-      <div  className=' font-philo font-medium h-full w-full absolute inset-0 flex flex-col items-center text-5xl md:text-9xl justify-center '>
-        <div className='  text-white middle'>NEELKAMAL</div>
-        <div className=' text-white middle'>RESORT</div>
+<section id='page1'>
+  <ClickSpark
+    sparkColor="white"
+    sparkSize={15}
+    sparkRadius={20}
+    sparkCount={8}
+    duration={400}
+  >
+    {/* Your content here */}
+    <div >
+      <Navbar/>
+      <div className=' relative w-full md:h-screen uppercase overflow-hidden' >
+        
+        
+        <Page1slider/>
+        <div  className=' font-philo font-medium h-full w-full absolute inset-0 flex flex-col items-center text-5xl md:text-9xl justify-center '>
+          <div className='  text-white middle'>NEELKAMAL</div>
+          <div className=' text-white middle'>RESORT</div>
+        </div>
       </div>
     </div>
-  </div>
-</ClickSpark>
+  </ClickSpark>
+</section>
   )
 }
 

@@ -2,6 +2,9 @@
 
 import { motion, useScroll, useTransform } from "motion/react"
 import { useRef, useState, useEffect } from "react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useGSAP } from "@gsap/react"
 import image6 from "../assets/6.webp"
 import image14 from "../assets/14.webp"
 import image15 from "../assets/15.webp"
@@ -9,6 +12,8 @@ import image16 from "../assets/16.webp"
 import image17 from "../assets/17.webp"
 import image18 from "../assets/18.webp"
 import page2bg from "../assets/page2bg.avif"
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Hgallery() {
   const containerRef = useRef(null)
@@ -19,6 +24,30 @@ function Hgallery() {
     offset: ["start start", "end end"],
   })
 
+  useGSAP(() => {
+    gsap.fromTo('.hg-card',
+      {
+        y: 100,
+        opacity: 0,
+        scale: 0.9,
+        rotation: 3
+      },
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: 1.2,
+        stagger: 0.1,
+        ease: "back.out(1.5)",
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+  }, { scope: containerRef });
   // Dynamically calculate the horizontal scroll translation distance based on screen width
   useEffect(() => {
     const handleResize = () => {
@@ -26,7 +55,7 @@ function Hgallery() {
       const width = isMobile ? 280 : 900;
       const gap = isMobile ? 15 : 30;
       // Translate by the total width of all items + gaps to slide them completely off-screen
-      setTotalDistance(items.length * width + (items.length - 1) * gap);
+      setTotalDistance((items.length-1) * width + (items.length - 1) * gap);
     };
 
     handleResize();
@@ -54,7 +83,7 @@ function Hgallery() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="shrink-0 w-[280px] min-[600px]:w-[900px] h-[350px] min-[600px]:h-[500px] rounded-xl relative overflow-hidden bg-cover bg-center shadow-md"
+                className="hg-card shrink-0 w-[280px] min-[600px]:w-[900px] h-[350px] min-[600px]:h-[500px] rounded-xl relative overflow-hidden bg-cover bg-center shadow-md"
                 style={{
                   backgroundImage: `url(${item.image})`,
                 }}
@@ -85,10 +114,7 @@ function Hgallery() {
         </div>
       </div>
 
-      {/* Outro Section */}
-      <section className="h-screen flex justify-center items-center">
-        <p className="text-4xl min-[600px]:text-6xl font-heading text-[#7A2B1D] uppercase">Fin</p>
-      </section>
+      
     </div>
   )
 }

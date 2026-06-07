@@ -144,6 +144,7 @@ function Opinion(){
     }, []);
     
        return(
+        <section id="page4">
         <div ref={sectionRef} className="min-h-screen bg-[#F8F6F0] relative flex items-center overflow-hidden font-sans">
             
             {/* ── Decorative circle with parallax ── */}
@@ -262,6 +263,7 @@ function Opinion(){
 
             </div>
         </div>
+        </section>
        )
 }
 
