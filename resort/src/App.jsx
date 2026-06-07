@@ -10,6 +10,9 @@ import Opinion from './components/Opinions';
 import FormPage from './components/FormPage';
 import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
+import { useState } from "react";
+import Preloader from './Pages/Preloader';
+
 
 
 const App = () => {
@@ -29,6 +32,8 @@ const App = () => {
     });
   });
   //idhr tak
+  //preloader
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     // Initialize Lenis smooth scroll
     const lenis = new Lenis({
@@ -50,6 +55,12 @@ const App = () => {
   }, [])
   
   return (
+    <>
+    {loading && (
+        <Preloader onComplete={() => setLoading(false)} />
+      )}
+
+    {!loading && (
     <div >
       <section className="relative h-[60vh] md:h-screen overflow-hidden">
         <Page1/>
@@ -83,6 +94,8 @@ const App = () => {
       
       
     </div>
+    )}
+    </>
   )
 }
 

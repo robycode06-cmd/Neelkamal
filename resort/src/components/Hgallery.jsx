@@ -72,7 +72,7 @@ function Hgallery() {
       
 
       {/* Scroll Container */}
-      <div ref={containerRef} className="h-[400vh] relative overflow-x-clip" style={{ overflowX: 'clip' }}>
+      <div ref={containerRef} className="h-[400vh]  relative overflow-x-clip" style={{ overflowX: 'clip' }}>
         {/* Sticky Wrapper */}
         <div className="sticky top-0 h-[70vh] ptt-16 md:pt-0 md:h-screen w-[280px] min-[600px]:w-[900px]  mx-auto flex items-center justify-start overflow-visible">
           {/* Gallery Horizontal Tape */}
