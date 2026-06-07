@@ -57,3 +57,70 @@ body {
 }
 
 
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  z-index: 90;
+  transform: translateX(100%);   /* hidden off-screen to the right */
+}
+/* Layer 2 — the panel itself */
+.mobile-menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 75%;                    /* covers 3/4 of the screen */
+  height: 100%;
+  background: linear-gradient(
+    160deg,
+    #FADFAD 0%,
+    #f5e6c8 40%,
+    #edd9a3 100%
+  );
+  z-index: 95;
+  transform: translateX(100%);   /* hidden off-screen to the right */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
+}
+/* Each nav link */
+.mobile-menu-link {
+  font-family: 'normalfont', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.15em;
+  color: #1a1a1a;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+/* Hover underline animation */
+.mobile-menu-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 60%;
+  height: 2px;
+  background: #1a1a1a;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+.mobile-menu-link:hover::after,
+.mobile-menu-link:active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+.mobile-menu-link:hover {
+  transform: scale(1.05);
+}
