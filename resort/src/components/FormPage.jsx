@@ -31,7 +31,7 @@ function FormPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('Submitting...');
-    const apiUrl = import.meta.env.VITE_API_URL;
+    const apiUrl = import.meta.env.VITE_API_URL || '';
     try {
       const response = await fetch(`${apiUrl}/api/submit`, {
         method: 'POST',
