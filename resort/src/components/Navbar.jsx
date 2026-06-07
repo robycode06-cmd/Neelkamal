@@ -32,7 +32,7 @@ const Navbar = () => {
         })
     })
   return (
-    <div  className='font-normalfont font-medium z-50 top-0 left-0 w-full items-center h-[9vh] md:h-[12vh] bg-[#FADFAD] md:bg-white/40 backdrop-blur-xs border-b-2 border-gray-300 text-[1.5vw] block md:fixed'>
+    <div  className='font-normalfont font-medium z-50 top-0 left-0 w-full items-center h-[9vh] md:h-[12vh] bg-[#f0d6af] md:bg-white/40 backdrop-blur-xs border-b-2 border-gray-300 text-[1.5vw] block md:fixed'>
         <ClickSpark
         sparkColor="black"
         sparkSize={15}

@@ -114,7 +114,7 @@ const Page3 = () => {
 
   return (
     <section id='page3'>
-    <div ref={sectionRef} className="min-h-screen w-full bg-[rgb(255,246,226)] py-16 px-4 md:px-12 flex flex-col items-center select-none overflow-hidden " >
+    <div ref={sectionRef} className="min-h-screen w-full bg-[#f8ecda] py-16 px-4 md:px-12 flex flex-col items-center select-none overflow-hidden " >
         <ClickSpark
         sparkColor="black"
         sparkSize={15}

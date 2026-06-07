@@ -34,7 +34,7 @@ const Page1 = () => {
     {/* Your content here */}
     <div >
       <Navbar/>
-      <div className=' relative w-full md:h-screen uppercase overflow-hidden' >
+      <div className=' relative w-full md:h-screen uppercase overflow-hidden ' >
         
         
         <Page1slider/>

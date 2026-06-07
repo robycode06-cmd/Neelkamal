@@ -46,106 +46,115 @@ function Opinion(){
        GSAP SCROLL ANIMATIONS
     ═══════════════════════════════════════════ */
     useEffect(() => {
-        const ctx = gsap.context(() => {
+  const mm = gsap.matchMedia();
 
-            /* ── 1. PARALLAX on decorative circle ── */
-            if (circleRef.current) {
-                gsap.to(circleRef.current, {
-                    yPercent: -25,
-                    scale: 1.05,
-                    ease: "none",
-                    scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: 1.5
-                    }
-                });
-            }
+  // Desktop only
+  mm.add("(min-width: 1024px)", () => {
+    const ctx = gsap.context(() => {
 
-            /* ── 2. CURVED REVEAL on text elements ──
-                 Each item "blooms" from a bottom-center origin point
-                 with a curved arc (different x/y eases create the curve) */
-            const revealItems = gsap.utils.toArray('.op-reveal');
-            revealItems.forEach((item, i) => {
-                // Alternate curve direction for organic feel
-                const curveX = i % 2 === 0 ? -35 : 25;
+      // Parallax Circle
+      if (circleRef.current) {
+        gsap.to(circleRef.current, {
+          yPercent: -25,
+          scale: 1.05,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.5
+          }
+        });
+      }
 
-                gsap.fromTo(item, 
-                    {
-                        y: 70,
-                        x: curveX,
-                        rotation: i % 2 === 0 ? -4 : 3,
-                        opacity: 0,
-                        scale: 0.92
-                    },
-                    {
-                        y: 0,
-                        x: 0,
-                        rotation: 0,
-                        opacity: 1,
-                        scale: 1,
-                        duration: 1.1,
-                        ease: "back.out(1.7)",
-                        scrollTrigger: {
-                            trigger: sectionRef.current,
-                            start: "top 70%",
-                            toggleActions: "play none none reverse"
-                        },
-                        delay: i * 0.12
-                    }
-                );
-            });
+      // Reveal Animations
+      const revealItems = gsap.utils.toArray(".op-reveal");
 
-            /* ── 3. CARDS SECTION — swoops in from bottom-right ── */
-            gsap.fromTo('.op-cards', 
-                {
-                    y: 120,
-                    x: 60,
-                    opacity: 0,
-                    scale: 0.85,
-                    rotation: 4
-                },
-                {
-                    y: 0,
-                    x: 0,
-                    opacity: 1,
-                    scale: 1,
-                    rotation: 0,
-                    duration: 1.4,
-                    ease: "power3.out",
-                    scrollTrigger: {
-                        trigger: '.op-cards',
-                        start: "top 85%",
-                        toggleActions: "play none none reverse"
-                    }
-                }
-            );
+      revealItems.forEach((item, i) => {
+        const curveX = i % 2 === 0 ? -35 : 25;
 
-            /* ── 4. GOLDEN SEPARATOR LINE — grows from left ── */
-            gsap.fromTo('.op-gold-line',
-                { scaleX: 0, transformOrigin: "left center" },
-                {
-                    scaleX: 1,
-                    duration: 0.8,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: '.op-gold-line',
-                        start: "top 88%",
-                        toggleActions: "play none none reverse"
-                    },
-                    delay: 0.6
-                }
-            );
+        gsap.fromTo(
+          item,
+          {
+            y: 70,
+            x: curveX,
+            rotation: i % 2 === 0 ? -4 : 3,
+            opacity: 0,
+            scale: 0.92
+          },
+          {
+            y: 0,
+            x: 0,
+            rotation: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.1,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 70%",
+              toggleActions: "play none none reverse"
+            },
+            delay: i * 0.12
+          }
+        );
+      });
 
-        }, sectionRef); // Scope all queries to this section
+      // Cards animation
+      gsap.fromTo(
+        ".op-cards",
+        {
+          y: 120,
+          x: 60,
+          opacity: 0,
+          scale: 0.85,
+          rotation: 4
+        },
+        {
+          y: 0,
+          x: 0,
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          duration: 1.4,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".op-cards",
+            start: "top 85%"
+          }
+        }
+      );
 
-        return () => ctx.revert();
-    }, []);
+    }, sectionRef);
+
+    return () => ctx.revert();
+  });
+
+  // Mobile only
+  mm.add("(max-width: 1023px)", () => {
+    gsap.set(".op-reveal", {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      scale: 1,
+      rotation: 0
+    });
+
+    gsap.set(".op-cards", {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      scale: 1,
+      rotation: 0
+    });
+  });
+
+  return () => mm.revert();
+}, []);
     
        return(
         <section id="page4">
-        <div ref={sectionRef} className="min-h-screen bg-[#F8F6F0] relative flex items-center overflow-hidden font-sans">
+        <div ref={sectionRef} className="min-h-screen bg-[#f8ecda] relative flex items-center overflow-hidden font-sans">
             
             {/* ── Decorative circle with parallax ── */}
             <div ref={circleRef} className={`absolute top-1/2 -translate-y-1/2 hidden lg:block 

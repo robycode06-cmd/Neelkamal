@@ -78,7 +78,7 @@ const Page1slider = () => {
 
   return (
     
-    <div className="relative h-[50vh] w-full md:h-screen overflow-hidden" style={{ clipPath: "inset(0)" }}>
+    <div className="relative h-[50vh] w-full md:h-screen overflow-hidden " style={{ clipPath: "inset(0)" }}>
       <ClickSpark
         sparkColor="black"
         sparkSize={15}
@@ -86,7 +86,7 @@ const Page1slider = () => {
         sparkCount={8}
         duration={400}
         >
-      <div className="absolute inset-0 w-full h-full overflow-hidden" >
+      <div className="absolute inset-0 w-full h-full overflow-hidden " >
         {images.map((src, index) => (
           <img
             key={index}
